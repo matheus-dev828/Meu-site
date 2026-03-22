@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Finalizar Pedido</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .box {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background: #38bdf8;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2 id="plano"></h2>
+
+  <input type="email" placeholder="Seu email" id="email">
+
+  <button onclick="enviar()">Finalizar Pedido</button>
+
+  <p style="margin-top:10px; font-size: 0.8rem;">
+    Você receberá as instruções de pagamento via Pix
+  </p>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const plano = params.get("plano");
+
+  const nomes = {
+    basico: "Plano Básico - R$50",
+    intermediario: "Plano Intermediário - R$150",
+    avancado: "Plano Avançado - R$300"
+  };
+
+  document.getElementById("plano").innerText = nomes[plano];
+
+  function enviar(){
+    const email = document.getElementById("email").value;
+
+    if(!email){
+      alert("Digite seu email!");
+      return;
+    }
+
+    alert("Pedido recebido! Entrarei em contato: " + email);
+  }
+</script>
+
+</body>
+</html>

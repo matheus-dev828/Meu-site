@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Pagamento</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .box {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .opcao {
+    background: #0f172a;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid transparent;
+  }
+
+  .opcao:hover {
+    border: 1px solid #38bdf8;
+    transform: scale(1.05);
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2 id="plano"></h2>
+  <p id="email"></p>
+
+  <h3>Escolha o pagamento:</h3>
+
+  <div class="opcao" onclick="pagar('Pix')">💸 Pix</div>
+  <div class="opcao" onclick="pagar('Cartão')">💳 Cartão</div>
+  <div class="opcao" onclick="pagar('Transferência')">🏦 Transferência</div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const plano = params.get("plano");
+  const email = params.get("email");
+
+  const nomes = {
+    basico: "Plano Básico - R$50",
+    intermediario: "Plano Intermediário - R$150",
+    avancado: "Plano Avançado - R$300"
+  };
+
+  document.getElementById("plano").innerText = nomes[plano];
+  document.getElementById("email").innerText = "Contato: " + email;
+
+  function pagar(tipo){
+    alert("Você escolheu pagar via " + tipo + ". Em breve entrarei em contato!");
+  }
+</script>
+
+</body>
+</html>
